@@ -66,7 +66,7 @@ namespace Acme.BookStore.ExemplosService
             {
                 Auth = await GetAuthConfigAsync(),
                 Features = await GetFeaturesConfigAsync(),
-                //Localization = await GetLocalizationConfigAsync(),
+                Localization = await GetLocalizationConfigAsync(),
                 CurrentUser = GetCurrentUser(),
                 Setting = await GetSettingConfigAsync(),
                 MultiTenancy = GetMultiTenancy(),

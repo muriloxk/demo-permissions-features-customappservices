@@ -1,6 +1,7 @@
 ﻿using Acme.BookStore.Localization;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Localization;
+using Volo.Abp.MultiTenancy;
 
 namespace Acme.BookStore.Permissions
 {
@@ -10,14 +11,13 @@ namespace Acme.BookStore.Permissions
         {
             var myGroup = context.AddGroup(BookStorePermissions.GroupName);
 
-            var nomeDaPermissao = myGroup.AddPermission(BookStorePermissions.NomeDaPermissao.Default);
-            nomeDaPermissao.AddChild(BookStorePermissions.NomeDaPermissao.Create);
-            nomeDaPermissao.AddChild(BookStorePermissions.NomeDaPermissao.Delete);
-            nomeDaPermissao.AddChild(BookStorePermissions.NomeDaPermissao.Update);
+            var nomeDaPermissao = myGroup.AddPermission(BookStorePermissions.NomeDaPermissao.Default, null, MultiTenancySides.Tenant);
+            nomeDaPermissao.AddChild(BookStorePermissions.NomeDaPermissao.Create, null, MultiTenancySides.Tenant);
+            nomeDaPermissao.AddChild(BookStorePermissions.NomeDaPermissao.Delete, null, MultiTenancySides.Tenant);
+            nomeDaPermissao.AddChild(BookStorePermissions.NomeDaPermissao.Update, null, MultiTenancySides.Tenant);
 
             nomeDaPermissao.WithProviders(RolePermissionValueProvider.ProviderName,
                                           UserPermissionValueProvider.ProviderName);
-
         }
 
         private static LocalizableString L(string name)
